@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+        <div id="conteniner" >
+
+            <div id="top" class="center_content ui-widget ui-widget-content ui-corner-all " style="height: 200px">
+                <!--color: #036fab -->
+                <ui:insert name="top"/>
+                <center>
+                    
+                    <p:graphicImage  id="header" value="/resources/img/logotipo.png" style="width: 55%" />
+                    
+                    
+                </center>
+            </div>
+
+            <div id="topi" class="ui-widget-content ">
+                <h1 id="logi">
+                    Curso  #{loginBean.nombreVet} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bienvenido: #{loginBean.nombre} #{loginBean.apellidos} || Usuario: #{loginBean.usernamexxx}
+
+                </h1>
+            </div>
+
+            <div id="menu">
+                <h:form>  
+                    <p:menubar >  
+                        <p:menuitem id="mi1" value="Inicio" url="inicio.jsf" icon="icon-nuevo" onstart="cambiarColor();"/>
+
+                        <p:submenu label="Mantenimiento" icon="icon-mantenimiento" >  
+
+                            <p:menuitem value="Mantenimiento de personas" url="usuarios.jsf" /> 
+                            <p:menuitem value="Mantenimiento de tipos de usuarios" url="tipoUsuarios.jsf" /> 
+                            <p:menuitem value="Mantenimiento de cursos" url="curso.jsf" />
+                            <p:menuitem value="Mantenimiento de cuentas" url="mantCuentas.jsf" />
+                        </p:submenu>  
+
+                        <p:submenu label="Búsqueda de personas" icon="icon-citas">  
+                            <p:menuitem value="Buscar persona" url="busqueda.jsf" icon="ui-icon-arrowreturnthick-1-w" />
+                        </p:submenu>  
+
+                        <p:submenu label="Diccionario" icon="icon-mascotas">  
+                            <p:menuitem value="Mantenimiento de Vocabulario" url="vocabulario.jsf" />   
+                        </p:submenu>  
+
+                        <p:submenu label="Cursos" icon="icon-veterinaria">  
+                            <p:menuitem value="Mantenimiento de cursos" url="curso.jsf" />  
+                        </p:submenu>
+
+                        <p:submenu label="Historial" icon="icon-historial">  
+                            <p:menuitem value="Nuevo Historial" icon="ui-icon-arrowreturnthick-1-w" url="nuevoHistorial.jsf"/>  
+                            <p:menuitem value="Revisar Historial" url="#" icon="ui-icon-arrowreturnthick-1-e" />  
+                        </p:submenu> 
+
+                        <p:submenu label="Reportes" icon="icon-reportes">  
+                            <p:menuitem value="Ver Reportes" url="#" icon="ui-icon-arrowreturnthick-1-w" />  
+                        </p:submenu> 
+
+                        <p:menuitem value="Salir" action="#{loginBean.logOut()}" 
+                                    icon="icon-salir" oncomplete="handleLoginRequest(xhr, status, args)"/>  
+                    </p:menubar>  
+                </h:form>  
+
+            </div>
+
+
+            <div id="content" class="center_content ui-widget ui-widget-content ui-corner-all">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+
+
+            <div id="bottom" class="ui-widget-header ui-corner-all">
+
+                <ui:insert name="bottom">FISIENGLISH| Todos los derechos reservados 2015 / Desarrollado por Roy Colorado &copy;</ui:insert>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            function handleLoginRequest(xhr, status, args) {
+                if (args.loggetOut) {
+                    location.href = args.ruta;
+                }
+            }
+
+            function cambiarColor() {
+                if (document.getElementById) { //se obtiene el id
+                    var el = document.getElementById('logi'); //se define la variable "el" igual a nuestro div
+                    el.style.color = 'red'; //damos un atributo display:none que oculta el div
+                }
+            }
+
+        </script>
+
+    </h:body>
+
+</html>

@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./Template/plantilla.xhtml">
+            
+            <ui:define name="content">
+                
+                <center>
+                    <p:outputLabel value="MANTENIMIENTO DE CURSOS" style="font-size: 18px;"/>
+                </center>
+
+                <p:growl id="msgs" showDetail="true" />
+
+                <h:form>
+                    <p:commandButton id="btnUsuarioCreate" oncomplete="dialogUsuarioCreate.show()"
+                                     title="Crear" value="Crear curso" icon="icon-nuevo"/> 
+                </h:form>
+
+                <br></br>
+                <h:form id="formDataTable">  
+                    <p:dataTable id="cars" value="#{mantVeterinariasBean.veterinarias}" var="vet"
+                                 paginator="true" rows="10"  paginatorPosition="bottom"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                 rowsPerPageTemplate="5,10,15"> 
+
+                        <f:facet name="header">
+                            Lista de cursos
+                        </f:facet>
+
+                        <p:column headerText="Nombre" style="width:15%">  
+                            <h:outputText value="#{vet.nombre}" />  
+                        </p:column>  
+
+                        <p:column headerText="Dirección" style="width:20%" 
+                                  footerText="contains" filterMatchMode="contains">  
+                            <h:outputText value="#{vet.descripcion}" />  
+                        </p:column>  
+
+                        <p:column headerText="Teléfono" style="width:12%">  
+                            <h:outputText value="#{vet.observacion}" />  
+                        </p:column>  
+
+                        <p:column headerText="Email" style="width:25%">  
+                            <h:outputText value="#{vet.ciclo.nombre}" />  
+                        </p:column>  
+
+                        <p:column headerText="Web" style="width:20%">  
+                            <h:outputText value="#{vet.ciclo.fechafin}" />  
+                        </p:column>
+                        
+                        <p:column headerText="Distrito" style="width:20%">  
+                            <p:selectOneMenu id="console" value="#{vet.ciclo.idciclo}" disabled="true">
+                                <f:selectItem itemLabel="#{vet.ciclo.nombre}"  />
+                            </p:selectOneMenu>   
+                        </p:column>
+
+                        <p:column headerText="Opciones" style="width:4%"> 
+
+                            <h:panelGrid id="display" columns="2" cellpadding="1" styleClass="companyHeaderGrid"> 
+                                <p:commandButton id="btnUpdate"  icon="icon-edit" title="Modificar">  
+
+                                </p:commandButton>
+
+                                <p:commandButton id="btnDelete" icon="icon-delete" title="Eliminar">  
+
+                                </p:commandButton>
+                            </h:panelGrid>
+
+                        </p:column>  
+
+                    </p:dataTable>  
+                </h:form>
+
+                <h:form id="formCreate" style="width: 400px">
+                    <p:dialog header="Modificar Curso" widgetVar="dialogUsuarioCreate" resizable="false" id="dlgUsuarioCreate"  
+                              showEffect="fade" hideEffect="clip" modal="true" style="width: 100px">  
+
+                        <h:panelGrid id="display" columns="2" cellpadding="6" style="margin:0 auto;">  
+
+
+                            <h:outputText value="Nombres: " />  
+                            <p:inputText value="#{mantVeterinariasBean.nombre}" placeholder="Nombre de curso"
+                                         onkeyup="this.value = this.value.toUpperCase();"/>  
+
+                            <h:outputText value="Dirección: " />  
+                            <p:inputText value="#{mantVeterinariasBean.direccion}" placeholder="Direccion"
+                                         onkeyup="this.value = this.value.toUpperCase();"/>  
+
+                            <h:outputText value="Teléfono: " />  
+                            <p:inputText value="#{mantVeterinariasBean.telefono}" placeholder="Teléfono"
+                                         onkeyup="this.value = this.value.toUpperCase();"/>  
+
+                            <h:outputText value="Email: " />  
+                            <p:inputText value="#{mantVeterinariasBean.mail}" size="40" placeholder="Email"
+                                         onkeyup="this.value = this.value.toUpperCase();"/>  
+
+                            <h:outputText value="Web: " />  
+                            <p:inputText value="#{mantVeterinariasBean.web}" size="40" placeholder="Web"
+                                         onkeyup="this.value = this.value.toUpperCase();"/> 
+                            
+                            <h:outputText value="Distrito: " />  
+                            <p:selectOneMenu id="console" value="#{mantVeterinariasBean.distr}" disabled="false">
+                                <f:selectItems value="#{mantVeterinariasBean.listaDistritos}" />
+                            </p:selectOneMenu>
+
+                            <f:facet name="footer">
+                                <p:separator/>
+                                <center>
+                                    <p:commandButton id="btnCreateAceptar" update=":formDataTable, :msgs" title="Guardar" 
+                                                     oncomplete="dialogUsuarioCreate.hide()" icon="icon-save" value="Guardar"/>
+                                    <p:commandButton id="btnCreateCancelar" oncomplete="dialogUsuarioCreate.hide()" 
+                                                     value="Cancelar" icon="icon-cancel" title="Cancelar"/>
+                                </center>
+                            </f:facet>
+
+                        </h:panelGrid>  
+
+                    </p:dialog>  
+
+                </h:form>
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

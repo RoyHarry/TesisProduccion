@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/06/2015 01:18:53 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.DetalleLeccion" table="detalle_leccion" catalog="tesisproduccion2" optimistic-lock="version">
+        <id name="iddetalleleccion" type="java.lang.Integer">
+            <column name="iddetalleleccion" />
+            <generator class="identity" />
+        </id>
+        <property name="numeropregunta" type="int">
+            <column name="numeropregunta" not-null="true" />
+        </property>
+        <property name="pregunta" type="string">
+            <column name="pregunta" length="100" not-null="true" />
+        </property>
+        <property name="respuesta" type="string">
+            <column name="respuesta" length="100" not-null="true" />
+        </property>
+        <property name="observacion" type="string">
+            <column name="observacion" length="100" not-null="true" />
+        </property>
+        <property name="mensaje" type="string">
+            <column name="mensaje" length="45" not-null="true" />
+        </property>
+        <set name="leccions" table="leccion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="detalle_leccion_iddetalleleccion" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Leccion" />
+        </set>
+        <set name="vocabularios" table="vocabulario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="detalle_leccion_iddetalleleccion" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Vocabulario" />
+        </set>
+    </class>
+</hibernate-mapping>

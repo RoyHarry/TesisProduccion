@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="tesisproduccion2"/>
+  <table-filter match-name="usuariofac"/>
+  <table-filter match-name="detalle_leccion"/>
+  <table-filter match-name="formulario"/>
+  <table-filter match-name="historial_notas"/>
+  <table-filter match-name="leccion"/>
+  <table-filter match-name="curso"/>
+  <table-filter match-name="tipousuario"/>
+  <table-filter match-name="usuario"/>
+  <table-filter match-name="usuario_curso"/>
+  <table-filter match-name="vocabulario"/>
+  <table-filter match-name="ciclo"/>
+  <table-filter match-name="nivel"/>
+</hibernate-reverse-engineering>

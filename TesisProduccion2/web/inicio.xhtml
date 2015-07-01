@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./Template/plantilla.xhtml">
+
+            
+            <ui:define name="content">
+                <h:form>
+                    <center>
+                        <div id="contentP" style="width: 50%">
+                            <h:panelGrid columns="3" id="display" cellpadding="1" styleClass="companyHeaderGrid"
+                                         cellspacing="10" style="width: 50%">
+
+                                <p:panel id="pan1" style="text-align:center; width: 200px">
+                                    <f:facet name="header">
+                                        Usuarios: #{inicioBean.var}
+                                    </f:facet>
+                                    <center>
+
+                                        <p:graphicImage value="./resources/img/usuarios.png" /><br />
+                                        <p:commandButton  value="Ingresar" action="usuarios.jsf"/>
+                                    </center>
+                                    <p:draggable for="pan1" revert="true" containment="contentP"/>
+                                </p:panel>
+
+
+                                <p:panel id="pan2" style="text-align:center; width: 200px">
+                                    <f:facet name="header">
+                                        Búsqueda
+                                    </f:facet>
+                                    <center>
+
+                                        <p:graphicImage value="/resources/img/buscarpersona.jpg" style="width: 74%"/><br />
+                                        <p:commandButton  value="Ingresar" action="busqueda.jsf" />
+                                    </center>
+                                    <p:draggable for="pan2" revert="true" />
+                                </p:panel>
+
+                                <p:panel id="pan3" style="text-align:center; width: 200px">
+                                    <f:facet name="header">
+                                        Vocabulario
+                                    </f:facet>
+                                    <center>
+
+                                        <p:graphicImage value="/resources/img/diccionario.jpg" style="width: 110%" /><br />
+                                        <p:commandButton  value="Ingresar"  action="vocabulario"/>
+                                    </center>
+                                    <p:draggable for="pan3" revert="true" />
+                                </p:panel>
+
+                                <p:panel id="pan4" style="text-align:center; width: 200px">
+                                    <f:facet name="header">
+                                        Cursos
+                                    </f:facet>
+                                    <center>
+
+                                        <p:graphicImage style="width: 82%"   value="/resources/img/libros.png" /><br />
+                                        <p:commandButton  value="Ingresar"  action="curso"/>
+                                    </center>
+                                    <p:draggable for="pan4" revert="true" />
+                                </p:panel>
+
+                                <p:panel id="pan5" style="text-align:center; width: 200px" rendered="true">
+                                    <f:facet name="header">
+                                        Historial de notas
+                                    </f:facet>
+                                    <center>
+
+                                        <p:graphicImage value="/resources/img/historial.png" /><br />
+                                        <p:commandButton  value="Ingresar"  action="nuevoHistorial"/>
+                                    </center>
+                                    <p:draggable for="pan5" revert="true" />
+                                </p:panel>
+
+                                <p:panel id="pan6" style="text-align:center; width: 200px">
+                                    <f:facet name="header">
+                                        Reportes
+                                    </f:facet>
+                                    <center>
+
+                                        <p:graphicImage value="/resources/img/reportes.png" /><br />
+                                        <p:commandButton  value="Ingresar"  action="#"/>
+                                    </center>
+                                    <p:draggable for="pan6" revert="true" />
+                                </p:panel>
+
+                            </h:panelGrid>
+                        </div>
+                    </center>
+                </h:form>
+            </ui:define>
+
+
+        </ui:composition>
+
+    </body>
+</html>

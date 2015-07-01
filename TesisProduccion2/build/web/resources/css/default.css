@@ -1,0 +1,105 @@
+body {
+    background-color: #ffffff;
+    font-size: 12px;
+    font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    color: #000000;  
+    margin: 10px;
+}
+
+#logi{
+/*    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    border-bottom: 1px solid #AFAFAF; 
+*/    font-size:  13px;/*
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;*/
+    color: black;
+    
+}
+
+#logii{
+    color: chocolate;
+    font-size:  13px;
+}
+
+a:link, a:visited {
+  color: #045491;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+a:link:hover, a:visited:hover  {
+  color: #045491;
+  font-weight : bold;
+  text-decoration : underline;
+}
+
+.ui-state-default .icon-delete{
+    background-image:  url(../img/icon-delete2.png);
+}
+
+.ui-state-default .icon-edit{
+    background-image:  url(../img/icon-edit2.png);
+}
+
+.ui-state-default .icon-nuevo{
+    background-image:  url(../img/icon-nuevo.png);
+}
+
+.ui-state-default .icon-check{
+    background-image:  url(../img/icon-check.png);
+}
+
+.ui-state-default .icon-cancel{
+    background-image:  url(../img/icon-cancel.png);
+}
+
+.ui-state-default .icon-save{
+    background-image:  url(../img/icon-save.png);
+}
+
+.ui-state-default .icon-logo{
+    background-image:  url(../img/icon-logo-pet.png);
+}
+
+.ui-state-default .icon-home{
+    background-image:  url(../img/icon-home.png);
+}
+
+.ui-state-default .icon-search{
+    background-image:  url(../img/icon-search.png);
+}
+
+
+
+
+.ui-state-default .icon-mantenimiento{
+    background-image:  url(../img/mant.png);
+}
+
+.ui-state-default .icon-citas{
+    background-image:  url(../img/citas.png);
+}
+
+.ui-state-default .icon-mascotas{
+    background-image:  url(../img/masc.png);
+}
+
+
+.ui-state-default .icon-veterinaria{
+    background-image:  url(../img/vet.png);
+}
+
+
+.ui-state-default .icon-historial{
+    background-image:  url(../img/hist.png);
+}
+
+.ui-state-default .icon-reportes{
+    background-image:  url(../img/rep.png);
+}
+
+
+.ui-state-default .icon-salir{
+    background-image:  url(../img/exit.png);
+}

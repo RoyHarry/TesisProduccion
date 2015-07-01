@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./Template/plantilla.xhtml">
+
+
+            <ui:define name="content">
+                <center>
+                    <p:outputLabel value="MANTENIMIENTO DE PERSONAS" style="font-size: 18px;"/>
+
+                </center>
+
+                <p:growl id="msgs" showDetail="true" />
+
+                <h:form>
+                    <p:commandButton id="btnUsuarioCreate" oncomplete="dialogUsuarioCreate2.show()"
+                                     title="Crear" value="Crear usuario persona" icon="icon-nuevo"/> 
+                </h:form>
+
+                <br></br>
+                <h:form id="formDataTable2">  
+                    <p:dataTable id="usuar" value="#{usuarioBean.usua}" var="usua"
+                                 paginator="true" rows="10"  paginatorPosition="bottom"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                 rowsPerPageTemplate="5,10,15"> 
+
+                        <f:facet name="header">
+                            Lista de personas registradas
+
+                        </f:facet>
+
+                        <p:column headerText="Nombres" style="width:15%">  
+                            <h:outputText value="#{usua.nombre}" />  
+                        </p:column>  
+
+                        <p:column headerText="Apellido paterno" style="width:20%" >  
+                            <h:outputText value="#{usua.apellidop}" />  
+                        </p:column>  
+
+                        <p:column headerText="Apellido materno" style="width:20%" 
+                                  footerText="contains" filterMatchMode="contains">  
+                            <h:outputText value="#{usua.apellidom}" />  
+                        </p:column> 
+
+                        <p:column headerText="Teléfono" style="width:12%">  
+                            <h:outputText value="#{usua.telefono}" />  
+                        </p:column>  
+
+                        <p:column headerText="Email" style="width:20%">  
+                            <h:outputText value="#{usua.email}" />  
+                        </p:column>
+                        
+                        <p:column headerText="DNI" style="width:20%">  
+                            <h:outputText value="#{usua.dni}" />  
+                        </p:column>
+
+                        <p:column headerText="Tipo" style="width:20%">  
+                            <p:selectOneMenu id="console" value="#{usua.tipousuario.idtipousuario}" disabled="true">
+                                <f:selectItem itemLabel="#{usua.tipousuario.nombre}"  />
+                            </p:selectOneMenu>   
+                        </p:column>
+                        
+                        
+
+                        <p:column headerText="Opciones" style="width:4%"> 
+
+                            <h:panelGrid id="display" columns="2" cellpadding="1" styleClass="companyHeaderGrid"> 
+                                <p:commandButton id="btnUpdate"  icon="icon-edit" title="Modificar"
+                                                 update=":formUpdate" oncomplete="dialogUsuarioUpdate.show()">  
+                                    <f:setPropertyActionListener value="#{usua}" target="#{usuarioBean.selectedUsuario}" />
+                                </p:commandButton>
+
+                                <p:commandButton id="btnDelete" icon="icon-delete" update=":formDelete" oncomplete="dialogUsuarioDelete.show()" title="Eliminar">  
+                                    <f:setPropertyActionListener value="#{usua}" target="#{usuarioBean.selectedUsuario}" />
+                                </p:commandButton>
+                            </h:panelGrid>
+
+                        </p:column>  
+
+                    </p:dataTable>  
+
+                </h:form>
+
+                <h:form id="formCreate" style="width: 400px">
+                    <p:dialog header="Crear usuario" widgetVar="dialogUsuarioCreate2" resizable="false" id="dlgUsuarioCreate"  
+                              showEffect="fade" hideEffect="clip" modal="true" style="width: 100px">  
+
+                        <h:panelGrid id="display" columns="2" cellpadding="6" style="margin:0 auto;">  
+
+
+                            <h:outputText value="Nombres " />  
+                            <p:inputText value="#{usuarioBean.nombre}" placeholder="Nombres"
+                                         onkeyup="this.value = this.value.toUpperCase();"/>  
+
+                            <h:outputText value="Apellido paterno " />  
+                            <p:inputText value="#{usuarioBean.apep}" placeholder="Apellido paterno"
+                                         onkeyup="this.value = this.value.toUpperCase();"/> 
+
+                            <h:outputText value="Apellidos materno " />  
+                            <p:inputText value="#{usuarioBean.apem}" placeholder="Apellido materno"
+                                         onkeyup="this.value = this.value.toUpperCase();"/> 
+
+                            <h:outputText value="Teléfono " />  
+                            <p:inputText value="#{usuarioBean.fno}" placeholder="Teléfono"/>   
+
+                            <h:outputText value="Email " />  
+                            <p:inputText value="#{usuarioBean.mail}" size="40" placeholder="Email"
+                                         onkeyup="this.value = this.value.toUpperCase();"/> 
+                            
+                            <h:outputText value="DNI " />  
+                            <p:inputText value="#{usuarioBean.dni}" size="40" placeholder="DNI"
+                                         onkeyup="this.value = this.value.toUpperCase();"/> 
+
+                            <h:outputText value="Tipo de Usuario " />  
+                            <p:selectOneMenu id="console" value="#{usuarioBean.tipoUsuario}" disabled="false">
+                                <f:selectItems value="#{usuarioBean.listaTiposDeUsuarios}" />
+                            </p:selectOneMenu>
+                            
+                            
+                            <f:facet name="footer">
+                                <p:separator/>
+                                <center>
+                                    <p:commandButton id="btnCreateAceptar2" update=":formDataTable2, :msgs" title="Guardar" 
+                                                     oncomplete="dialogUsuarioCreate2.hide()" icon="icon-save" value="Guardar"
+                                                     actionListener="#{usuarioBean.btnCreateUsuario()}"/>
+                                    <p:commandButton id="btnCreateCancelar" oncomplete="dialogUsuarioCreate2.hide()" 
+                                                     value="Cancelar" icon="icon-cancel" title="Cancelar"/>
+                                </center>
+                            </f:facet>
+                        </h:panelGrid>  
+                    </p:dialog>  
+                </h:form>
+                
+                
+                <h:form id="formUpdate">
+                    <p:dialog header="Modificar usuario" widgetVar="dialogUsuarioUpdate" resizable="false" id="dlgUsuarioUpdate"  
+                              showEffect="fade" hideEffect="drop" modal="true">  
+                        <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
+
+                            <h:outputText value="Id: " rendered="false"/>     
+                            <p:inputText value="#{usuarioBean.selectedUsuario.idusuario}" rendered="false"/>
+                                
+                            
+                            <h:outputText value="Nombres: " />  
+                            <p:inputText value="#{usuarioBean.selectedUsuario.nombre}" disabled="true"/>  
+
+                            <h:outputText value="Apellido paterno: " />  
+                            <p:inputText value="#{usuarioBean.selectedUsuario.apellidop}" disabled="true"/> 
+
+                            <h:outputText value="Apellido materno: " />  
+                            <p:inputText value="#{usuarioBean.selectedUsuario.apellidom}" disabled="true"/> 
+
+                            <h:outputText value="Teléfono: " />  
+                            <p:inputText value="#{usuarioBean.selectedUsuario.telefono}"/>   
+
+                            <h:outputText value="Email: " />  
+                            <p:inputText value="#{usuarioBean.selectedUsuario.email}" size="40" 
+                                         onkeyup="this.value = this.value.toUpperCase();"/> 
+                            
+                            <h:outputText value="Dni:  " />  
+                            <p:inputText value="#{usuarioBean.selectedUsuario.dni}" size="40" disabled="true"
+                                         onkeyup="this.value = this.value.toUpperCase();"/> 
+
+                            <h:outputText value="Tipo de Usuario " /> 
+                            <p:selectOneMenu id="console" value="#{usuarioBean.selectedUsuario.tipousuario.nombre}" disabled="false">
+                                <f:selectItems value="#{usuarioBean.listaTiposDeUsuarios}" />
+                            </p:selectOneMenu>
+                            
+
+                            <f:facet name="footer">
+                                <p:separator/>
+                                <center>
+                                    <p:commandButton id="btnUpdateAceptar" update=":formDataTable2, :msgs" title="Modificar" actionListener="#{usuarioBean.btnUpdateUsuario()}"
+                                                     oncomplete="dialogUsuarioUpdate.hide()" icon="icon-save" value="Modificar"/>
+                                    <p:commandButton id="btnUpdateCancelar" oncomplete="dialogUsuarioUpdate.hide()" 
+                                                     value="Cancelar" icon="icon-cancel" title="Cancelar"/>
+                                </center>
+                            </f:facet>
+                        </h:panelGrid>  
+                    </p:dialog>  
+                </h:form>
+                
+                
+                <h:form id="formDelete">
+                    <p:confirmDialog id="confirmDialog" message="¿Esta seguro de eliminar a #{usuarioBean.selectedUsuario.nombre}
+                                     #{usuarioBean.selectedUsuario.apellidop} #{usuarioBean.selectedUsuario.apellidom}?"
+                                     header="Eliminar usuario persona" severity="alert" widgetVar="dialogUsuarioDelete"> 
+                        
+                        <center>
+                            <h:inputHidden value="#{usuarioBean.selectedUsuario.idusuario}"/>
+                            <p:commandButton id="confirm" value="Aceptar" update=":formDataTable2, :msgs" oncomplete="dialogUsuarioDelete.hide()"
+                                             actionListener="#{usuarioBean.btnDeleteUsuario()}" icon="icon-check"/>  
+                            <p:commandButton id="decline" value="Cancelar" onclick="dialogUsuarioDelete.hide();" type="button" icon="icon-cancel"/>  
+                        </center>
+                    </p:confirmDialog>
+                </h:form>
+
+
+
+            </ui:define>
+
+
+        </ui:composition>
+
+    </body>
+</html>

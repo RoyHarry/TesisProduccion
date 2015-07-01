@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/06/2015 01:18:53 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.HistorialNotas" table="historial_notas" catalog="tesisproduccion2" optimistic-lock="version">
+        <id name="idhistorialnotas" type="java.lang.Integer">
+            <column name="idhistorialnotas" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usuariofac" class="modelo.Usuariofac" fetch="select">
+            <column name="usuariofac_idusuariofac" not-null="true" />
+        </many-to-one>
+        <property name="resumen" type="string">
+            <column name="resumen" length="45" not-null="true" />
+        </property>
+        <property name="observacion" type="string">
+            <column name="observacion" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./Template/plantilla.xhtml">
+
+            <ui:define name="content">
+
+                <center>
+                    <p:outputLabel value="MANTENIMIENTO DE CUENTAS DE ACCESO" style="font-size: 18px;"/>
+                </center>
+
+                <br></br><br></br>
+
+                <p:growl id="msgs" showDetail="true" />
+
+                <p:panelGrid id="contenedor" columns="2" style="margin:0 auto; border: none;">
+
+                    <p:panel id="for1" rendered="true" style="border: none;">
+                        <h:form id="formCreate" >
+
+                            <h:panelGrid columns="3" cellspacing="5" styleClass="companyHeaderGrid">  
+                                <h:outputText value="Usuario: " />  
+                                <p:inputText value="#{mantCuentasBean.username}" size="40" placeholder="Nombre de usuario"/><br></br> 
+
+                                <h:outputText value="Contraseña: " />  
+                                <p:password value="#{mantCuentasBean.paasword}" size="40" placeholder="Contraseña"/> <br></br>  
+
+                                <h:outputText value="Colegiatura " />  
+                                <p:inputText value="#{mantCuentasBean.ncoleg}" size="40" placeholder="Colegiatura"/>  <br></br> 
+
+                                <h:outputText value="Especialidad " />  
+                                <p:inputText value="#{mantCuentasBean.especi}" size="40" placeholder="Especialidad"/>  <br></br> 
+
+                                <h:outputText value="DNI " /> 
+                                <p:commandButton id="btnCreateAceptar32" update=":contenedor" icon="icon-search" 
+                                                 action="#{mantCuentasBean.btnBuscar()}">
+
+                                    <p:inputText value="#{mantCuentasBean.dniSelected}" disabled="true" size="34"/>
+                                </p:commandButton> <br></br>
+
+
+                                <h:outputText value="Curso" />  
+                                <p:selectOneMenu id="console" value="#{mantCuentasBean.vetSelected}" disabled="false">
+                                    <f:selectItem itemLabel="--Seleccione--"/>
+                                    <f:selectItems value="#{mantCuentasBean.listaVeterinarias}" />
+                                </p:selectOneMenu>
+
+                                <f:facet name="footer">
+                                    <p:separator/>
+                                    <center>
+                                        <p:commandButton id="btnCreateAceptar" update=":formDataTable, :msgs" title="Guardar" 
+                                                         oncomplete="dialogUsuarioCreate.hide()" icon="icon-save" value="Guardar"/>
+                                        <p:commandButton id="btnCreateCancelar" oncomplete="dialogUsuarioCreate.hide()" 
+                                                         value="Cancelar" icon="icon-cancel" title="Cancelar"/>
+                                    </center>
+                                </f:facet>
+
+                            </h:panelGrid>  
+                        </h:form>
+                    </p:panel>
+
+                    <p:panel id="for2" rendered="#{mantCuentasBean.p}" style="border: none;">
+                        <h:form id="formDataTable2">  
+                            <p:dataTable id="usuar" value="#{usuarioBean.usua}" var="usua"
+                                         paginator="true" rows="10"  paginatorPosition="bottom"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                         rowsPerPageTemplate="5,10,15"> 
+
+                                <f:facet name="header">
+                                    Lista de personas
+
+                                </f:facet>
+
+                                <p:column headerText="Nombres" style="width:15%">  
+                                    <h:outputText value="#{usua.nombre}" />  
+                                </p:column>  
+
+                                <p:column headerText="Apellido paterno" style="width:20%" >  
+                                    <h:outputText value="#{usua.apellidop}" />  
+                                </p:column>  
+
+                                <p:column headerText="Apellido materno" style="width:20%" 
+                                          footerText="contains" filterMatchMode="contains">  
+                                    <h:outputText value="#{usua.apellidom}" />  
+                                </p:column> 
+
+                                <p:column headerText="DNI" style="width:20%">  
+                                    <h:outputText value="#{usua.dni}" />  
+                                </p:column>
+
+                                <p:column headerText="Seleccionar" style="width:4%">  
+                                    <p:commandButton id="btnUpdate"  icon="icon-check" title="Seleccionar"
+                                                     update=":contenedor" action="#{mantCuentasBean.btnSelected()}">  
+                                        <f:setPropertyActionListener value="#{usua.dni}" target="#{mantCuentasBean.dniSelected}" />
+                                    </p:commandButton>
+                                </p:column>
+
+
+                            </p:dataTable>  
+
+                        </h:form>
+
+                    </p:panel>
+
+                </p:panelGrid>
+
+                <br></br>
+                <h:form id="formDataTable">  
+                    <p:dataTable id="cars" value="#{mantCuentasBean.usuaVet}" var="usuV"
+                                 paginator="true" rows="10"  paginatorPosition="bottom"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                 rowsPerPageTemplate="5,10,15" > 
+
+                        <f:facet name="header">
+                            Lista de cuentas de acceso
+                        </f:facet>
+
+                        <p:column headerText="Usuario" style="width:15%; height: 20px;">  
+                            <h:outputText value="#{usuV.user}" />  
+                        </p:column>  
+
+                        <p:column headerText="Colegiatura" style="width:12%; height: 20px;">  
+                            <h:outputText value="#{usuV.gradoAcademico}" />  
+                        </p:column>  
+
+                        <p:column headerText="Especialidad" style="width:25%; height: 20px;">  
+                            <h:outputText value="#{usuV.escuela}" />  
+                        </p:column>  
+
+                        <p:column headerText="Nombre" style="width:20%; height: 20px;">  
+                            <h:outputText value="#{usuV.usuario.nombre}" />  
+                        </p:column>
+
+
+                        <p:column headerText="Opciones" style="width:4%"> 
+
+                            <h:panelGrid id="display" columns="2" cellpadding="1" styleClass="companyHeaderGrid"> 
+                                <p:commandButton id="btnUpdate"  icon="icon-edit" title="Modificar">  
+
+                                </p:commandButton>
+
+                                <p:commandButton id="btnDelete" icon="icon-delete" title="Eliminar">  
+
+                                </p:commandButton>
+                            </h:panelGrid>
+
+                        </p:column>  
+
+                    </p:dataTable>  
+                </h:form>
+
+
+                <!--
+                <h:form id="formCreate" style="width: 400px">
+                    <p:dialog header="Modificar Veterinaria" widgetVar="dialogUsuarioCreate" resizable="false" id="dlgUsuarioCreate"  
+                              showEffect="fade" hideEffect="clip" modal="true" style="width: 100px">  
+
+                        <h:panelGrid id="display" columns="2" cellpadding="6" style="margin:0 auto;">  
+
+
+                            <h:outputText value="Nombres: " />  
+                            <p:inputText value="{mantVeterinariasBean.nombre}" placeholder="Nombre de veterinaria"/>  
+
+                            <h:outputText value="Dirección: " />  
+                            <p:inputText value="{mantVeterinariasBean.direccion}" placeholder="Direccion"/>  
+
+                            <h:outputText value="Teléfono: " />  
+                            <p:inputText value="{mantVeterinariasBean.telefono}" placeholder="Teléfono"/>  
+
+                            <h:outputText value="Email: " />  
+                            <p:inputText value="{mantVeterinariasBean.mail}" size="40" placeholder="Email"/>  
+
+                            <h:outputText value="Web: " />  
+                            <p:inputText value="{mantVeterinariasBean.web}" size="40" placeholder="Web"/> 
+                            
+                            <h:outputText value="Distrito: " />  
+                            <p:selectOneMenu id="console" value="{mantVeterinariasBean.distr}" disabled="false">
+                                <f:selectItems value="{mantVeterinariasBean.listaDistritos}" />
+                            </p:selectOneMenu>
+
+                            <f:facet name="footer">
+                                <p:separator/>
+                                <center>
+                                    <p:commandButton id="btnCreateAceptar" update=":formDataTable, :msgs" title="Modificar" 
+                                                     oncomplete="dialogUsuarioCreate.hide()" icon="icon-save" value="Modificar"/>
+                                    <p:commandButton id="btnCreateCancelar" oncomplete="dialogUsuarioCreate.hide()" 
+                                                     value="Cancelar" icon="icon-cancel" title="Cancelar"/>
+                                </center>
+                            </f:facet>
+
+                        </h:panelGrid>  
+
+                    </p:dialog>  
+
+                </h:form>
+                -->
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

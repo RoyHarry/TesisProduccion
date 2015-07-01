@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/tesisproduccion2?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">root</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <mapping resource="modelo/Ciclo.hbm.xml"/>
+    <mapping resource="modelo/Usuario.hbm.xml"/>
+    <mapping resource="modelo/DetalleLeccion.hbm.xml"/>
+    <mapping resource="modelo/Tipousuario.hbm.xml"/>
+    <mapping resource="modelo/Usuariofac.hbm.xml"/>
+    <mapping resource="modelo/Leccion.hbm.xml"/>
+    <mapping resource="modelo/Formulario.hbm.xml"/>
+    <mapping resource="modelo/Curso.hbm.xml"/>
+    <mapping resource="modelo/UsuarioCurso.hbm.xml"/>
+    <mapping resource="modelo/Vocabulario.hbm.xml"/>
+    <mapping resource="modelo/HistorialNotas.hbm.xml"/>
+    <mapping resource="modelo/Nivel.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

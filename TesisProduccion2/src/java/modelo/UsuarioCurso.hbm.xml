@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/06/2015 01:18:53 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.UsuarioCurso" table="usuario_curso" catalog="tesisproduccion2" optimistic-lock="version">
+        <id name="idusuariocurso" type="java.lang.Integer">
+            <column name="idusuariocurso" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="curso" class="modelo.Curso" fetch="select">
+            <column name="curso_idcurso" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuariofac" class="modelo.Usuariofac" fetch="select">
+            <column name="usuariofac_idusuariofac" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

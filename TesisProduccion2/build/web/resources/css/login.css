@@ -1,0 +1,36 @@
+/* 
+    Document   : login
+    Created on : 08-abr-2014, 14:56:38
+    Author     : JESOFT
+    Description:
+        Purpose of the stylesheet follows.
+*/
+/*
+html, body {
+    font-family:Lucida Grande, Lucida Sans, Arial, sans-serif;font-size:12px;
+    height: 100%
+}*/
+
+root { 
+    display: block;
+}
+
+body{
+/*    background-color: #ECF3FD;*/
+    /*background-color: #7FFFD4;*/
+    background-color:#2B8B93;
+      
+}
+
+.conteiner{
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    font-size: 85%;
+}
+
+.ui-state-default .icon-login{
+    background-image:  url(../img/icon-key.png);
+}
+

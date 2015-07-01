@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/06/2015 01:18:53 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Usuariofac" table="usuariofac" catalog="tesisproduccion2" optimistic-lock="version">
+        <id name="idusuariofac" type="java.lang.Integer">
+            <column name="idusuariofac" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usuario" class="modelo.Usuario" fetch="select">
+            <column name="usuario_idusuario" not-null="true" />
+        </many-to-one>
+        <property name="user" type="string">
+            <column name="user" length="45" not-null="true" />
+        </property>
+        <property name="pass" type="string">
+            <column name="pass" length="45" not-null="true" />
+        </property>
+        <property name="gradoAcademico" type="string">
+            <column name="grado_academico" length="45" />
+        </property>
+        <property name="escuela" type="string">
+            <column name="escuela" length="45" not-null="true" />
+        </property>
+        <set name="formularios" table="formulario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuariofac_idusuariofac" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Formulario" />
+        </set>
+        <set name="historialNotases" table="historial_notas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuariofac_idusuariofac" not-null="true" />
+            </key>
+            <one-to-many class="modelo.HistorialNotas" />
+        </set>
+        <set name="usuarioCursos" table="usuario_curso" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuariofac_idusuariofac" not-null="true" />
+            </key>
+            <one-to-many class="modelo.UsuarioCurso" />
+        </set>
+    </class>
+</hibernate-mapping>
