@@ -10,12 +10,12 @@ import modelo.Usuariofac;
 
 /**
  *
- * @author JESOFT
+ * @author Roy
  */
-public interface UsuarioVetDao {
-    public boolean create(Usuariofac usuarioVet);
-    public boolean update(Usuariofac usuarioVet);
-    public boolean delete(Usuariofac usuarioVet);
+public interface UsuariofacDao {
+    public boolean create(Usuariofac usuariofac);
+    public boolean update(Usuariofac usuariofac);
+    public boolean delete(Usuariofac usuariofac);
     public List<Usuariofac> findAll();
     
 }

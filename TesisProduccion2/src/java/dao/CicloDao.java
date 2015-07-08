@@ -6,13 +6,13 @@
 package dao;
 
 import java.util.List;
-import modelo.UsuarioCurso;
+import modelo.Ciclo;
 
 /**
  *
- * @author JESOFT
+ * @author Roy
  */
-public interface veterinariaWorkDao {
-    public UsuarioCurso findAll(int id);
+public interface CicloDao {
+    public List<Ciclo> listarCiclos();
     
 }

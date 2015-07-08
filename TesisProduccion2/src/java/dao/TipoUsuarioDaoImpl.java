@@ -15,7 +15,7 @@ import org.hibernate.Session;
 
 /**
  *
- * @author JESOFT
+ * @author Roy
  */
 public class TipoUsuarioDaoImpl implements TipoUsuarioDao, Serializable{
     

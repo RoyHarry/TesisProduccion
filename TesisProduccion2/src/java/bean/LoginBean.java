@@ -11,8 +11,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-import dao.veterinariaWorkDao;
-import dao.veterinariaWorkDaoImpl;
+import dao.UsuarioCursoDao;
+import dao.UsuarioCursoDaoImpl;
 import javax.faces.bean.SessionScoped;
 import javax.servlet.http.HttpServletRequest;
 import modelo.Usuariofac;
@@ -42,7 +42,7 @@ public class LoginBean implements Serializable {
     private String nombre;
     private String apellidos;
     
-    private String nombreVet;
+    private String nombreCurso;
 
     public LoginBean() {
 
@@ -68,13 +68,13 @@ public class LoginBean implements Serializable {
         this.setNombre(uf.getUsuario().getNombre());
         this.setApellidos(uf.getUsuario().getApellidop()+" "+uf.getUsuario().getApellidom());
         
-        veterinariaWorkDao vd=new veterinariaWorkDaoImpl();
+        UsuarioCursoDao uc=new UsuarioCursoDaoImpl();
         UsuarioCurso vet=new UsuarioCurso();
-        vet=vd.findAll(uf.getIdusuariofac());
+        vet=uc.findAll(uf.getIdusuariofac());
         try {
             if (uf != null) {
                 
-                nombreVet=vet.getCurso().getNombre();
+                nombreCurso=vet.getCurso().getNombre();
                 
                 FacesContext faceContex = FacesContext.getCurrentInstance();
                 httpServletRequest = (HttpServletRequest) faceContex.getExternalContext().getRequest();
@@ -142,12 +142,12 @@ public class LoginBean implements Serializable {
         this.apellidos = apellidos;
     }
 
-    public String getNombreVet() {
-        return nombreVet;
+    public String getNombreCurso() {
+        return nombreCurso;
     }
 
-    public void setNombreVet(String nombreVet) {
-        this.nombreVet = nombreVet;
+    public void setNombreCurso(String nombreCurso) {
+        this.nombreCurso = nombreCurso;
     }
     
     

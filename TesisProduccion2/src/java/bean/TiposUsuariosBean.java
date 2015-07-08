@@ -18,7 +18,7 @@ import modelo.Tipousuario;
 
 /**
  *
- * @author JESOFT
+ * @author Roy
  */
 @ManagedBean
 @ViewScoped

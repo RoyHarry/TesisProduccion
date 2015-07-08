@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author JESOFT
+ * @author Roy
  */
 public class prueba {
     

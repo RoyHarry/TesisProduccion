@@ -80,14 +80,14 @@ public class UsuarioDaoImpl implements UsuarioDao, Serializable{
     }
 
     @Override
-    public boolean create(Usuariofac usuarioVet) {
+    public boolean create(Usuariofac usuariofac) {
         boolean estado=false;
         
         Session sesion=HibernateUtil.getSessionFactory().openSession();
         
         try{
             sesion.getTransaction().begin();
-            sesion.save(usuarioVet);
+            sesion.save(usuariofac);
             estado=true;
             sesion.getTransaction().commit();
         
@@ -100,7 +100,7 @@ public class UsuarioDaoImpl implements UsuarioDao, Serializable{
     }
 
     @Override
-    public boolean update(Usuariofac usuarioVet) {
+    public boolean update(Usuariofac usuariofac) {
         boolean estado=false;
         
         Session sesion=HibernateUtil.getSessionFactory().openSession();
@@ -108,11 +108,11 @@ public class UsuarioDaoImpl implements UsuarioDao, Serializable{
         try{
             sesion.getTransaction().begin();
             
-            sesion.update(usuarioVet);
+            sesion.update(usuariofac);
             estado=true;
             sesion.getTransaction().commit();
-            System.out.println("CONNNNCHEEEE: "+usuarioVet.getIdusuariofac()+" --"+usuarioVet.getUser()+"--"
-                    +usuarioVet.getPass());
+            System.out.println("CONNNNCHEEEE: "+usuariofac.getIdusuariofac()+" --"+usuariofac.getUser()+"--"
+                    +usuariofac.getPass());
         
         }catch(Exception e){
             sesion.getTransaction().rollback();
@@ -123,7 +123,7 @@ public class UsuarioDaoImpl implements UsuarioDao, Serializable{
     }
     
     @Override
-    public boolean delete(Usuariofac usuarioVet) {
+    public boolean delete(Usuariofac usuariofac) {
         boolean estado=false;
         
         Session sesion=HibernateUtil.getSessionFactory().openSession();
@@ -131,7 +131,7 @@ public class UsuarioDaoImpl implements UsuarioDao, Serializable{
         try{
             sesion.getTransaction().begin();
             
-            sesion.delete(usuarioVet);
+            sesion.delete(usuariofac);
             estado=true;
             sesion.getTransaction().commit();
         
@@ -207,7 +207,7 @@ public class UsuarioDaoImpl implements UsuarioDao, Serializable{
         Usuariofac us=new Usuariofac();
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
-            us= (Usuariofac) session.createQuery("from UsuarioVet where username='"+nom+"'").uniqueResult();
+            us= (Usuariofac) session.createQuery("from Usuariofac where user='"+nom+"'").uniqueResult();
             System.out.println("USUARIO: "+us.getIdusuariofac()+us.getUser()+" "+us.getPass());
             id=us.getIdusuariofac();
         } catch (Exception e) {

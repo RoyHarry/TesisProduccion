@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Roy-Pc/Documents/NetBeansProjects/TesisProduccion2/web/curso.xhtml</file>
-            <file>file:/C:/Users/Roy-Pc/Documents/NetBeansProjects/TesisProduccion2/web/tipoUsuarios.xhtml</file>
-            <file>file:/C:/Users/Roy-Pc/Documents/NetBeansProjects/TesisProduccion2/src/java/bean/MantCuentasBean.java</file>
-            <file>file:/C:/Users/Roy-Pc/Documents/NetBeansProjects/TesisProduccion2/web/nuevoHistorial.xhtml</file>
-            <file>file:/C:/Users/Roy-Pc/Documents/NetBeansProjects/TesisProduccion2/web/vocabulario.xhtml</file>
-            <file>file:/C:/Users/Roy-Pc/Documents/NetBeansProjects/TesisProduccion2/web/usuarios.xhtml</file>
-            <file>file:/C:/Users/Roy-Pc/Documents/NetBeansProjects/TesisProduccion2/web/mantCuentas.xhtml</file>
+            <file>file:/C:/Users/Roy-Pc/Documents/GitHub/TesisProduccion/TesisProduccion2/web/inicio.xhtml</file>
+            <file>file:/C:/Users/Roy-Pc/Documents/GitHub/TesisProduccion/TesisProduccion2/web/curso.xhtml</file>
+            <file>file:/C:/Users/Roy-Pc/Documents/GitHub/TesisProduccion/TesisProduccion2/src/java/dao/UsuarioCursoDao.java</file>
+            <file>file:/C:/Users/Roy-Pc/Documents/GitHub/TesisProduccion/TesisProduccion2/src/java/dao/UsuariofacDaoImpl.java</file>
         </group>
     </open-files>
 </project-private>

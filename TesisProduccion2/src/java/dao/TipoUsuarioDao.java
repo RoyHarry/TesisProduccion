@@ -10,7 +10,7 @@ import modelo.Tipousuario;
 
 /**
  *
- * @author JESOFT
+ * @author Roy
  */
 public interface TipoUsuarioDao {
     public List<Tipousuario> findAll();

@@ -14,22 +14,22 @@ import org.hibernate.Session;
 
 /**
  *
- * @author JESOFT
+ * @author Roy
  */
-public class veterinariaWorkDaoImpl implements veterinariaWorkDao{
+public class UsuarioCursoDaoImpl implements UsuarioCursoDao{
     
     @Override
     public UsuarioCurso findAll(int id) {
-        UsuarioCurso listadoVetWork=null;
+        UsuarioCurso listadoUsuarioCurso=null;
         
         Session session=HibernateUtil.getSessionFactory().openSession();
         String hql="FROM UsuarioCurso where idusuariocurso='"+id+"'";
         
         try{
             //session.beginTransaction();
-            listadoVetWork = (UsuarioCurso) session.createQuery(hql).uniqueResult();
+            listadoUsuarioCurso = (UsuarioCurso) session.createQuery(hql).uniqueResult();
             
-            System.out.println("dsfsdf"+listadoVetWork.getCurso().getNombre());
+            System.out.println("dsfsdf"+listadoUsuarioCurso.getCurso().getNombre());
             
             //session.beginTransaction().commit();
             System.out.println("hOLA");
@@ -37,7 +37,7 @@ public class veterinariaWorkDaoImpl implements veterinariaWorkDao{
             session.beginTransaction().rollback();
         }
         session.close();
-        return listadoVetWork;
+        return listadoUsuarioCurso;
     }
 
     

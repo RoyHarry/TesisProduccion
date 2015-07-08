@@ -4,10 +4,10 @@
  */
 package bean;
 
-import dao.DistritoDao;
-import dao.DistritoDaoImpl;
-import dao.veterinariaDao;
-import dao.veterinariaDaoImpl;
+import dao.CicloDao;
+import dao.CicloDaoImpl;
+import dao.CursoDao;
+import dao.CursoDaoImpl;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -22,14 +22,14 @@ import modelo.Curso;
 
 /**
  *
- * @author JESOFT
+ * @author Roy
  */
 @ManagedBean
 @ViewScoped
-public class MantVeterinariasBean {
+public class MantCursosBean {
 
-    private List<Curso> veterinarias;
-    private Curso selectedVeterinaria;
+    private List<Curso> cursos;
+    private Curso selectedCurso;
     
     private String nombre;
     private String direccion;
@@ -38,17 +38,17 @@ public class MantVeterinariasBean {
     private String web;
     
     private String distr;
-    private List<SelectItem> listaDistritos;
+    private List<SelectItem> listaCiclos;
     private HttpServletRequest httpServletRequest;
     private FacesContext faceContext;
     
     /**
      * Creates a new instance of MantVeterinarias
      */
-    public MantVeterinariasBean() {
+    public MantCursosBean() {
         
-        this.selectedVeterinaria = new Curso();
-        this.veterinarias = new ArrayList<Curso>();
+        this.selectedCurso = new Curso();
+        this.cursos = new ArrayList<Curso>();
 
 
         faceContext = FacesContext.getCurrentInstance();
@@ -110,12 +110,12 @@ public class MantVeterinariasBean {
     
     
     
-    public ArrayList<String> listarDistrito() {
-        DistritoDao distDao = new DistritoDaoImpl();
+    public ArrayList<String> listarCiclo() {
+        CicloDao distDao = new CicloDaoImpl();
 
-        List<Ciclo> distritos = (List<Ciclo>) new ArrayList();
-        distritos = distDao.listarDistritos();
-        Iterator ite = distritos.iterator();
+        List<Ciclo> ciclos = (List<Ciclo>) new ArrayList();
+        ciclos = distDao.listarCiclos();
+        Iterator ite = ciclos.iterator();
         Object nuevaf = new Object();
         ArrayList<String> nombreDist = new ArrayList<String>();
         while (ite.hasNext()) {
@@ -125,22 +125,22 @@ public class MantVeterinariasBean {
         return nombreDist;
     }
 
-    public List<Curso> getVeterinarias() {
-        veterinariaDao vetDao=new veterinariaDaoImpl();
-        this.veterinarias=vetDao.findAllVeterinarias();
-        return veterinarias;
+    public List<Curso> getCursos() {
+        CursoDao cursoDao=new CursoDaoImpl();
+        this.cursos=cursoDao.findAllCursos();
+        return cursos;
     }
 
-    public void setVeterinarias(List<Curso> veterinarias) {
-        this.veterinarias = veterinarias;
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
     }
 
-    public Curso getSelectedVeterinaria() {
-        return selectedVeterinaria;
+    public Curso getSelectedCurso() {
+        return selectedCurso;
     }
 
-    public void setSelectedVeterinaria(Curso selectedVeterinaria) {
-        this.selectedVeterinaria = selectedVeterinaria;
+    public void setSelectedCurso(Curso selectedCurso) {
+        this.selectedCurso = selectedCurso;
     }
 
     public String getNombre() {
@@ -183,20 +183,20 @@ public class MantVeterinariasBean {
         this.web = web;
     }
 
-    public List<SelectItem> getListaDistritos() {
-        listaDistritos = new ArrayList<SelectItem>();
-        ArrayList<String> dist = this.listarDistrito();
-        for (int i = 0; i < dist.size(); i++) {
+    public List<SelectItem> getListaCiclos() {
+        listaCiclos = new ArrayList<SelectItem>();
+        ArrayList<String> ciclo = this.listarCiclo();
+        for (int i = 0; i < ciclo.size(); i++) {
             SelectItem item = new SelectItem();
-            item.setValue(dist.get(i));
-            item.setLabel(dist.get(i));
-            listaDistritos.add(item);
+            item.setValue(ciclo.get(i));
+            item.setLabel(ciclo.get(i));
+            listaCiclos.add(item);
         }
-        return listaDistritos;
+        return listaCiclos;
     }
 
-    public void setListaDistritos(List<SelectItem> listaDistritos) {
-        this.listaDistritos = listaDistritos;
+    public void setListaCiclos(List<SelectItem> listaCiclos) {
+        this.listaCiclos = listaCiclos;
     }
 
     public String getDistr() {

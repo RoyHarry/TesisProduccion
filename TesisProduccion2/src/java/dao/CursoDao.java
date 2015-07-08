@@ -7,12 +7,16 @@ package dao;
 
 import java.util.List;
 import modelo.Ciclo;
+import modelo.Curso;
 
 /**
  *
- * @author JESOFT
+ * @author Roy
  */
-public interface DistritoDao {
-    public List<Ciclo> listarDistritos();
+public interface CursoDao {
+    
+    public List<Curso> findAllCursos();
+    public boolean createU(Curso curso);
+    public List<Curso> listarTipos();
     
 }

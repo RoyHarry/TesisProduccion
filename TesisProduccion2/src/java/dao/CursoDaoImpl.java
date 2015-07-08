@@ -19,10 +19,10 @@ import org.hibernate.Session;
  *
  * @author Roy
  */
-public class veterinariaDaoImpl implements veterinariaDao, Serializable{
+public class CursoDaoImpl implements CursoDao, Serializable{
 
     @Override
-    public List<Curso> findAllVeterinarias() {
+    public List<Curso> findAllCursos() {
         
         List<Curso> listadoVeterinarias=null;
         
@@ -50,15 +50,15 @@ public class veterinariaDaoImpl implements veterinariaDao, Serializable{
     }
 
     @Override
-    public boolean createU(Curso vet) {
+    public boolean createU(Curso curso) {
         boolean estado=false;
-        System.out.println("usuario: "+vet.getNombre());
+        System.out.println("usuario: "+curso.getNombre());
         
         Session sesion=HibernateUtil.getSessionFactory().openSession();
         
         try{
             sesion.getTransaction().begin();
-            sesion.save(vet);
+            sesion.save(curso);
             estado=true;
             sesion.getTransaction().commit();
         
@@ -72,16 +72,16 @@ public class veterinariaDaoImpl implements veterinariaDao, Serializable{
 
     @Override
     public List<Curso> listarTipos() {
-        List<Curso> listaVets = new ArrayList();
+        List<Curso> listaCurso = new ArrayList();
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
-            listaVets = session.createSQLQuery("Select nombre from Curso").list();
+            listaCurso = session.createSQLQuery("Select nombre from Curso").list();
         } catch (Exception e) {
             session.beginTransaction().rollback();
             e.printStackTrace();
         }
         session.close();
-        return listaVets;
+        return listaCurso;
     }
     
     

@@ -10,7 +10,7 @@ import org.primefaces.event.FileUploadEvent;
 
 /**
  *
- * @author JESOFT
+ * @author Roy
  */
 public class FileUploadController {
     public void handleFileUpload(FileUploadEvent event) {

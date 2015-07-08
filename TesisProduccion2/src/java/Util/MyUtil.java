@@ -6,7 +6,7 @@ package Util;
 
 /**
  *
- * @author JESOFT
+ * @author Roy
  */
 public class MyUtil {
     

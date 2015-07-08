@@ -11,7 +11,7 @@ import modelo.Usuariofac;
 
 /**
  *
- * @author JESOFT
+ * @author Roy
  */
 public interface UsuarioDao {
     
@@ -19,9 +19,9 @@ public interface UsuarioDao {
     public Usuariofac login(Usuariofac usuario);
     public List<Usuariofac> findAll();
     public List<Usuario> findAllUsuarios();
-    public boolean create(Usuariofac usuarioVet);
-    public boolean update(Usuariofac usuarioVet);
-    public boolean delete(Usuariofac usuarioVet);
+    public boolean create(Usuariofac usuariofac);
+    public boolean update(Usuariofac usuariofac);
+    public boolean delete(Usuariofac usuariofac);
     
     public boolean createU(Usuario usu);
     public boolean updateU(Usuario usu);

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  *
- * @author JESOFT
+ * @author Roy
  */
 @ManagedBean
 @ViewScoped

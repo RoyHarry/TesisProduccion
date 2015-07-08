@@ -12,15 +12,15 @@ import org.hibernate.Session;
 
 /**
  *
- * @author JESOFT
+ * @author Roy
  */
-public class UsuarioVetDaoImpl implements UsuarioVetDao{
+public class UsuariofacDaoImpl implements UsuariofacDao{
     
     public List<Usuariofac> findAll() {
         List<Usuariofac> listadoUsuarios=null;
         
         Session session=HibernateUtil.getSessionFactory().openSession();
-        String hql="FROM UsuarioVet";
+        String hql="FROM Usuariofac";
         
         try{
             //session.beginTransaction();
@@ -43,14 +43,14 @@ public class UsuarioVetDaoImpl implements UsuarioVetDao{
     }
 
     @Override
-    public boolean create(Usuariofac usuarioVet) {
+    public boolean create(Usuariofac usuariofac) {
         boolean estado=false;
         
         Session sesion=HibernateUtil.getSessionFactory().openSession();
         
         try{
             sesion.getTransaction().begin();
-            sesion.save(usuarioVet);
+            sesion.save(usuariofac);
             estado=true;
             sesion.getTransaction().commit();
         
@@ -63,7 +63,7 @@ public class UsuarioVetDaoImpl implements UsuarioVetDao{
     }
 
     @Override
-    public boolean update(Usuariofac usuarioVet) {
+    public boolean update(Usuariofac usuariofac) {
         boolean estado=false;
         
         Session sesion=HibernateUtil.getSessionFactory().openSession();
@@ -71,11 +71,11 @@ public class UsuarioVetDaoImpl implements UsuarioVetDao{
         try{
             sesion.getTransaction().begin();
             
-            sesion.update(usuarioVet);
+            sesion.update(usuariofac);
             estado=true;
             sesion.getTransaction().commit();
-            System.out.println("CONNNNCHEEEE: "+usuarioVet.getIdusuariofac()+" --"+usuarioVet.getUser()+"--"
-                    +usuarioVet.getPass());
+            System.out.println("CONNNNCHEEEE: "+usuariofac.getIdusuariofac()+" --"+usuariofac.getUser()+"--"
+                    +usuariofac.getPass());
         
         }catch(Exception e){
             sesion.getTransaction().rollback();
@@ -86,7 +86,7 @@ public class UsuarioVetDaoImpl implements UsuarioVetDao{
     }
     
     @Override
-    public boolean delete(Usuariofac usuarioVet) {
+    public boolean delete(Usuariofac usuariofac) {
         boolean estado=false;
         
         Session sesion=HibernateUtil.getSessionFactory().openSession();
@@ -94,7 +94,7 @@ public class UsuarioVetDaoImpl implements UsuarioVetDao{
         try{
             sesion.getTransaction().begin();
             
-            sesion.delete(usuarioVet);
+            sesion.delete(usuariofac);
             estado=true;
             sesion.getTransaction().commit();
         

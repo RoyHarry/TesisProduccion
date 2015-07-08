@@ -25,7 +25,7 @@
 
                 <br></br>
                 <h:form id="formDataTable">  
-                    <p:dataTable id="cars" value="#{mantVeterinariasBean.veterinarias}" var="vet"
+                    <p:dataTable id="cars" value="#{mantCursosBean.cursos}" var="curso"
                                  paginator="true" rows="10"  paginatorPosition="bottom"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                  rowsPerPageTemplate="5,10,15"> 
@@ -35,29 +35,38 @@
                         </f:facet>
 
                         <p:column headerText="Nombre" style="width:15%">  
-                            <h:outputText value="#{vet.nombre}" />  
+                            <h:outputText value="#{curso.nombre}" />  
                         </p:column>  
 
-                        <p:column headerText="Dirección" style="width:20%" 
+                        <p:column headerText="Descripcion" style="width:20%" 
                                   footerText="contains" filterMatchMode="contains">  
-                            <h:outputText value="#{vet.descripcion}" />  
+                            <h:outputText value="#{curso.descripcion}" />  
                         </p:column>  
 
-                        <p:column headerText="Teléfono" style="width:12%">  
-                            <h:outputText value="#{vet.observacion}" />  
+                        <p:column headerText="Observación" style="width:12%">  
+                            <h:outputText value="#{curso.observacion}" />  
                         </p:column>  
-
-                        <p:column headerText="Email" style="width:25%">  
-                            <h:outputText value="#{vet.ciclo.nombre}" />  
-                        </p:column>  
-
-                        <p:column headerText="Web" style="width:20%">  
-                            <h:outputText value="#{vet.ciclo.fechafin}" />  
+                        
+                        
+                        <p:column headerText="Código de nivel" style="width:25%">  
+                            <h:outputText value="#{curso.nivel.idnivel}" />  
                         </p:column>
                         
-                        <p:column headerText="Distrito" style="width:20%">  
-                            <p:selectOneMenu id="console" value="#{vet.ciclo.idciclo}" disabled="true">
-                                <f:selectItem itemLabel="#{vet.ciclo.nombre}"  />
+                        <p:column headerText="Codigo de ciclo" style="width:25%">  
+                            <h:outputText value="#{curso.ciclo.idciclo}" />  
+                        </p:column>  
+
+                        <p:column headerText="Fecha inicio" style="width:20%">  
+                            <h:outputText value="#{curso.ciclo.fechainicio}" />  
+                        </p:column>
+                        
+                        <p:column headerText="Fecha fin" style="width:25%">  
+                            <h:outputText value="#{curso.ciclo.fechafin}" />  
+                        </p:column>
+                        
+                        <p:column headerText="Ciclo" style="width:20%">  
+                            <p:selectOneMenu id="console" value="#{curso.ciclo.idciclo}" disabled="true">
+                                <f:selectItem itemLabel="#{curso.ciclo.nombre}"  />
                             </p:selectOneMenu>   
                         </p:column>
 
@@ -86,28 +95,36 @@
 
 
                             <h:outputText value="Nombres: " />  
-                            <p:inputText value="#{mantVeterinariasBean.nombre}" placeholder="Nombre de curso"
+                            <p:inputText value="#{mantCursosBean.selectedCurso.nombre}" placeholder="Nombre de curso"
                                          onkeyup="this.value = this.value.toUpperCase();"/>  
 
-                            <h:outputText value="Dirección: " />  
-                            <p:inputText value="#{mantVeterinariasBean.direccion}" placeholder="Direccion"
+                            <h:outputText value="Descripción:" />  
+                            <p:inputText value="#{mantCursosBean.selectedCurso.descripcion}" placeholder="Descripción"
                                          onkeyup="this.value = this.value.toUpperCase();"/>  
 
-                            <h:outputText value="Teléfono: " />  
-                            <p:inputText value="#{mantVeterinariasBean.telefono}" placeholder="Teléfono"
+                            <h:outputText value="Observación " />  
+                            <p:inputText value="#{mantCursosBean.selectedCurso.observacion}" placeholder="Observación"
                                          onkeyup="this.value = this.value.toUpperCase();"/>  
 
-                            <h:outputText value="Email: " />  
-                            <p:inputText value="#{mantVeterinariasBean.mail}" size="40" placeholder="Email"
+                            <h:outputText value="Código de Nivel" />  
+                            <p:inputText value="#{mantCursosBean.selectedCurso.nivel.idnivel}" size="40" placeholder="Código de nivel"
                                          onkeyup="this.value = this.value.toUpperCase();"/>  
 
-                            <h:outputText value="Web: " />  
-                            <p:inputText value="#{mantVeterinariasBean.web}" size="40" placeholder="Web"
+                            <h:outputText value="Codigo de ciclo" />  
+                            <p:inputText value="#{mantCursosBean.selectedCurso.ciclo.idciclo}" size="40" placeholder="Código de ciclo"
                                          onkeyup="this.value = this.value.toUpperCase();"/> 
                             
-                            <h:outputText value="Distrito: " />  
-                            <p:selectOneMenu id="console" value="#{mantVeterinariasBean.distr}" disabled="false">
-                                <f:selectItems value="#{mantVeterinariasBean.listaDistritos}" />
+                            <h:outputText value="Fecha de inicio:" />  
+                            <p:inputText value="#{mantCursosBean.selectedCurso.ciclo.fechainicio}" size="40" placeholder="Fecha inicio"
+                                         onkeyup="this.value = this.value.toUpperCase();"/> 
+                            
+                            <h:outputText value="Fecha de fin" />  
+                            <p:inputText value="#{mantCursosBean.selectedCurso.ciclo.fechafin}" size="40" placeholder="Fecha fin"
+                                         onkeyup="this.value = this.value.toUpperCase();"/> 
+                            
+                            <h:outputText value="Ciclo" />  
+                            <p:selectOneMenu id="console" value="#{mantCursosBean.distr}" disabled="false">
+                                <f:selectItems value="#{mantCursosBean.listaCiclos}" />
                             </p:selectOneMenu>
 
                             <f:facet name="footer">

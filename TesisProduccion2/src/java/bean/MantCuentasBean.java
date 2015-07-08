@@ -4,10 +4,10 @@
  */
 package bean;
 
-import dao.UsuarioVetDao;
-import dao.UsuarioVetDaoImpl;
-import dao.veterinariaDao;
-import dao.veterinariaDaoImpl;
+import dao.UsuariofacDao;
+import dao.UsuariofacDaoImpl;
+import dao.CursoDao;
+import dao.CursoDaoImpl;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -21,34 +21,34 @@ import modelo.Curso;
 
 /**
  *
- * @author JESOFT
+ * @author Roy
  */
 @ManagedBean
 @ViewScoped
 public class MantCuentasBean {
 
-    private List<Usuariofac> usuaVet;
-    private Usuariofac selectedUsuarioVet;
+    private List<Usuariofac> usuafac;
+    private Usuariofac selectedUsuariofac;
     
     private String username;
     private String paasword;
     private String ncoleg;
     private String especi;
     
-    private List<SelectItem> listaUsuariosVet;
-    private List<SelectItem> listaVeterinarias;
+    private List<SelectItem> listaUsuariosfac;
+    private List<SelectItem> listaCursos;
     private HttpServletRequest httpServletRequest;
     private FacesContext faceContext;
     boolean p=false;
     private String dniSelected;
-    private String vetSelected;
+    private String cursoSelected;
     
-    private List<Curso> vets;
+    private List<Curso> cursos;
     
     public MantCuentasBean() {
         
-        this.selectedUsuarioVet = new Usuariofac();
-        this.usuaVet = new ArrayList<Usuariofac>();
+        this.selectedUsuariofac = new Usuariofac();
+        this.usuafac = new ArrayList<Usuariofac>();
 
 
         faceContext = FacesContext.getCurrentInstance();
@@ -69,13 +69,13 @@ public class MantCuentasBean {
             }
         }
         
-        listaVeterinarias = new ArrayList<SelectItem>();
+        listaCursos = new ArrayList<SelectItem>();
         ArrayList<String> facu = this.listarVeterinarias();
         for (int i = 0; i < facu.size(); i++) {
             SelectItem item = new SelectItem();
             item.setValue(facu.get(i));
             item.setLabel(facu.get(i));
-            listaVeterinarias.add(item);
+            listaCursos.add(item);
         }
     }
     
@@ -90,39 +90,39 @@ public class MantCuentasBean {
     
     public ArrayList<String> listarVeterinarias(){
     
-        veterinariaDao vetDao = new veterinariaDaoImpl();
+        CursoDao cursoDao = new CursoDaoImpl();
 
-        List<Curso> veteri = (List<Curso>) new ArrayList();
-        veteri = vetDao.listarTipos();
-        Iterator ite = veteri.iterator();
+        List<Curso> curso = (List<Curso>) new ArrayList();
+        curso = cursoDao.listarTipos();
+        Iterator ite = curso.iterator();
         Object nuevaf = new Object();
-        ArrayList<String> nombreVet = new ArrayList<String>();
+        ArrayList<String> nombreCurso = new ArrayList<String>();
         while (ite.hasNext()) {
             nuevaf = ite.next();
-            nombreVet.add(String.valueOf(nuevaf));
+            nombreCurso.add(String.valueOf(nuevaf));
         }
-        return nombreVet;
+        return nombreCurso;
         
     }
     
     
 
-    public List<Usuariofac> getUsuaVet() {
-        UsuarioVetDao usuarioVetDao=new UsuarioVetDaoImpl();
-        this.usuaVet=usuarioVetDao.findAll();
-        return usuaVet;
+    public List<Usuariofac> getUsuafac() {
+        UsuariofacDao usuariofacDao=new UsuariofacDaoImpl();
+        this.usuafac=usuariofacDao.findAll();
+        return usuafac;
     }
 
-    public void setUsuaVet(List<Usuariofac> usuaVet) {
-        this.usuaVet = usuaVet;
+    public void setUsuafac(List<Usuariofac> usuafac) {
+        this.usuafac = usuafac;
     }
 
-    public Usuariofac getSelectedUsuarioVet() {
-        return selectedUsuarioVet;
+    public Usuariofac getSelectedUsuariofac() {
+        return selectedUsuariofac;
     }
 
-    public void setSelectedUsuarioVet(Usuariofac selectedUsuarioVet) {
-        this.selectedUsuarioVet = selectedUsuarioVet;
+    public void setSelectedUsuariofac(Usuariofac selectedUsuariofac) {
+        this.selectedUsuariofac = selectedUsuariofac;
     }
 
     public String getUsername() {
@@ -157,12 +157,12 @@ public class MantCuentasBean {
         this.especi = especi;
     }
 
-    public List<SelectItem> getListaUsuariosVet() {
-        return listaUsuariosVet;
+    public List<SelectItem> getListaUsuariosfac() {
+        return listaUsuariosfac;
     }
 
-    public void setListaUsuariosVet(List<SelectItem> listaUsuariosVet) {
-        this.listaUsuariosVet = listaUsuariosVet;
+    public void setListaUsuariosVet(List<SelectItem> listaUsuariosfac) {
+        this.listaUsuariosfac = listaUsuariosfac;
     }
 
     public boolean isP() {
@@ -181,31 +181,31 @@ public class MantCuentasBean {
         this.dniSelected = dniSelected;
     }
 
-    public List<Curso> getVets() {
-        veterinariaDao VetDao=new veterinariaDaoImpl();
-        this.vets=VetDao.findAllVeterinarias();
+    public List<Curso> getCursos() {
+        CursoDao CursoDao=new CursoDaoImpl();
+        this.cursos=CursoDao.findAllCursos();
         
-        return vets;
+        return cursos;
     }
 
-    public void setVets(List<Curso> vets) {
-        this.vets = vets;
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
     }
 
-    public String getVetSelected() {
-        return vetSelected;
+    public String getCursoSelected() {
+        return cursoSelected;
     }
 
-    public void setVetSelected(String vetSelected) {
-        this.vetSelected = vetSelected;
+    public void setCursoSelected(String cursoSelected) {
+        this.cursoSelected = cursoSelected;
     }
 
-    public List<SelectItem> getListaVeterinarias() {
-        return listaVeterinarias;
+    public List<SelectItem> getListaCursos() {
+        return listaCursos;
     }
 
-    public void setListaVeterinarias(List<SelectItem> listaVeterinarias) {
-        this.listaVeterinarias = listaVeterinarias;
+    public void setListaCursos(List<SelectItem> listaCursos) {
+        this.listaCursos = listaCursos;
     }
     
     

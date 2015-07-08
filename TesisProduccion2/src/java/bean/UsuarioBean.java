@@ -22,7 +22,7 @@ import modelo.Usuariofac;
 
 /**
  *
- * @author JESOFT
+ * @author Roy
  */
 @ManagedBean
 @ViewScoped

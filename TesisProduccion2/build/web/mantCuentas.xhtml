@@ -47,9 +47,9 @@
 
 
                                 <h:outputText value="Curso" />  
-                                <p:selectOneMenu id="console" value="#{mantCuentasBean.vetSelected}" disabled="false">
+                                <p:selectOneMenu id="console" value="#{mantCuentasBean.cursoSelected}" disabled="false">
                                     <f:selectItem itemLabel="--Seleccione--"/>
-                                    <f:selectItems value="#{mantCuentasBean.listaVeterinarias}" />
+                                    <f:selectItems value="#{mantCuentasBean.listaCursos}" />
                                 </p:selectOneMenu>
 
                                 <f:facet name="footer">
@@ -113,7 +113,7 @@
 
                 <br></br>
                 <h:form id="formDataTable">  
-                    <p:dataTable id="cars" value="#{mantCuentasBean.usuaVet}" var="usuV"
+                    <p:dataTable id="cars" value="#{mantCuentasBean.usuafac}" var="usuf"
                                  paginator="true" rows="10"  paginatorPosition="bottom"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                  rowsPerPageTemplate="5,10,15" > 
@@ -123,11 +123,11 @@
                         </f:facet>
 
                         <p:column headerText="Usuario" style="width:15%; height: 20px;">  
-                            <h:outputText value="#{usuV.user}" />  
+                            <h:outputText value="#{usuf.user}" />  
                         </p:column>  
 
                         <p:column headerText="Colegiatura" style="width:12%; height: 20px;">  
-                            <h:outputText value="#{usuV.gradoAcademico}" />  
+                            <h:outputText value="#{usuf.gradoAcademico}" />  
                         </p:column>  
 
                         <p:column headerText="Especialidad" style="width:25%; height: 20px;">  
@@ -135,7 +135,7 @@
                         </p:column>  
 
                         <p:column headerText="Nombre" style="width:20%; height: 20px;">  
-                            <h:outputText value="#{usuV.usuario.nombre}" />  
+                            <h:outputText value="#{usuf.usuario.nombre}" />  
                         </p:column>
 
 
@@ -202,9 +202,7 @@
                 </h:form>
                 -->
 
-
             </ui:define>
-
         </ui:composition>
 
     </body>

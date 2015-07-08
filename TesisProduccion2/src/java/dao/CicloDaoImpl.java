@@ -14,16 +14,16 @@ import org.hibernate.Session;
 
 /**
  *
- * @author JESOFT
+ * @author Roy
  */
-public class DistritoDaoImpl implements DistritoDao, Serializable{
+public class CicloDaoImpl implements CicloDao, Serializable{
     @Override
-    public List<Ciclo> listarDistritos() {
+    public List<Ciclo> listarCiclos() {
         
-        List<Ciclo> listaDistritos = new ArrayList();
+        List<Ciclo> listarCiclos = new ArrayList();
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
-            listaDistritos = session.createSQLQuery("Select nombre from Ciclo").list();
+            listarCiclos = session.createSQLQuery("Select nombre from Ciclo").list();
             
 //            for(int i=0; ){
 //            
@@ -34,7 +34,7 @@ public class DistritoDaoImpl implements DistritoDao, Serializable{
             e.printStackTrace();
         }
         session.close();
-        return listaDistritos;
+        return listarCiclos;
     }
     
 }

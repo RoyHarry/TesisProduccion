@@ -10,7 +10,7 @@ import javax.faces.context.FacesContext;
 
 /**
  *
- * @author JESOFT
+ * @author Roy
  */
 //@Named(value = "menuBean")
 @ManagedBean
