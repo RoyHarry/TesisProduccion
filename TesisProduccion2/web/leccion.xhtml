@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./Template/plantilla.xhtml">
+
+            <ui:define name="content">
+                <center>
+                    <p:outputLabel value="MANTENIMIENTO DE LECCIONES" style="font-size: 18px;"/>
+                </center>
+
+                <p:growl id="msgs" showDetail="true" />
+
+                <h:form>
+                    <p:commandButton id="btnTipoCreate" oncomplete="dialogUsuarioCreate.show()"
+                                     title="Crear" value="Crear Lecciones" icon="icon-nuevo"/> 
+                </h:form>
+
+                <br></br>
+                <h:form id="formDataTable">  
+                    <p:dataTable id="cars" value="#{leccionBean.leccion}" var="leccion"
+                                 paginator="true" rows="10"  paginatorPosition="bottom"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                 rowsPerPageTemplate="5,10,15"> 
+
+                        <f:facet name="header">
+                            Lista de Lecciones
+                        </f:facet>
+
+                        <p:column headerText="Nivel" style="width:15%">  
+                            <h:outputText value="#{leccion.descripcion}" />  
+                        </p:column>  
+
+                        <p:column headerText="Tema" style="width:12%">  
+                            <h:outputText value="#{leccion.estado}" />  
+                        </p:column>  
+                        
+                        <p:column headerText="Estado" style="width:12%">  
+                            <h:outputText value="#{leccion.puntuacion}" />  
+                        </p:column>                        
+                        
+                        <p:column headerText="Detalle Leccion" style="width:25%">  
+                            <p:selectOneMenu id="console" value="#{leccion.detalleLeccion.iddetalleleccion}" disabled="true">
+                                <f:selectItem itemLabel="Central" itemValue="4" />
+                                <f:selectItem itemLabel="Local" itemValue="3" />
+                                <f:selectItem itemLabel="Parcial" itemValue="2" />
+                                <f:selectItem itemLabel="Basica" itemValue="1" />
+                            </p:selectOneMenu>  
+                        </p:column>  
+                        
+                        <p:column headerText="Opciones" style="width:4%"> 
+
+                            <h:panelGrid id="display" columns="2" cellpadding="1" styleClass="companyHeaderGrid"> 
+                                <p:commandButton id="btnUpdate"  icon="icon-edit" title="Modificar"
+                                                 update=":formUpdate" oncomplete="dialogUsuarioUpdate.show()">  
+                                    <f:setPropertyActionListener value="#{leccion}" target="#{leccionBean.selectedLeccion}" />
+                                </p:commandButton>
+
+                                <p:commandButton id="btnDelete" update=":formDelete" oncomplete="dialogUsuarioDelete.show()" icon="icon-delete" title="Eliminar">  
+                                    <f:setPropertyActionListener value="#{leccion}" target="#{leccionBean.selectedLeccion}" />
+                                </p:commandButton>
+                            </h:panelGrid>
+
+                        </p:column>  
+
+                    </p:dataTable>  
+                    
+                </h:form>
+
+                <h:form id="formCreate" style="width: 400px">
+                    <p:dialog header="Crear leccion" widgetVar="dialogUsuarioCreate" resizable="false" id="dlgUsuarioCreate"  
+                              showEffect="fade" hideEffect="clip" modal="true" style="width: 100px">  
+                        
+                        <h:panelGrid id="display" columns="2" cellpadding="6" style="margin:0 auto;">  
+                            <h:outputText value="Leccion: " />  
+                            <p:inputText value="#{leccionBean.selectedLeccion.descripcion}"
+                                         onkeyup="this.value = this.value.toUpperCase();" placeholder="Nombres"/>  
+
+                            <h:outputText value="Estado " />  
+                            <p:inputText value="#{leccionBean.selectedLeccion.estado}"
+                                         onkeyup="this.value = this.value.toUpperCase();" placeholder="Tema"/>  
+                            
+                            <h:outputText value="Puntuacion" />  
+                            <p:inputText value="#{leccionBean.selectedLeccion.puntuacion}"
+                                         onkeyup="this.value = this.value.toUpperCase();" placeholder="Estado"/> 
+                            
+                            <h:outputText value="Id Detalle Leccion" />  
+                            <p:inputText value="#{leccionBean.selectedLeccion.detalleLeccion.iddetalleleccion}"
+                                         onkeyup="this.value = this.value.toUpperCase();" placeholder="Leccion"/> 
+                            
+                            <f:facet name="footer">
+                                <p:separator/>
+                                <center>
+                                    <p:commandButton id="btnCreateAceptar" update=":formDataTable, :msgs" title="Guardar" 
+                                                     oncomplete="dialogUsuarioCreate.hide()" icon="icon-save" value="Guardar"
+                                                     actionListener="#{leccionBean.btnCreateLeccion()}"/>
+                                    <p:commandButton id="btnCreateCancelar" oncomplete="dialogUsuarioCreate.hide()" 
+                                                     value="Cancelar" icon="icon-cancel" title="Cancelar"/>
+                                </center>
+                            </f:facet>
+                        </h:panelGrid>  
+                    </p:dialog>  
+                </h:form>
+
+
+                <h:form id="formUpdate">
+                    <p:dialog header="Modificar leccion" widgetVar="dialogUsuarioUpdate" resizable="false" id="dlgUsuarioUpdate"  
+                              showEffect="fade" hideEffect="drop" modal="true">  
+                        <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
+
+                            <h:outputText value="Id " rendered="false"/>     
+                            <p:inputText value="#{leccionBean.selectedLeccion.idleccion}" rendered="false"/>
+                                
+                            
+                            <h:outputText value="Nivel " />  
+                            <p:inputText value="#{leccionBean.selectedLeccion.descripcion}"
+                                         onkeyup="this.value = this.value.toUpperCase();"/>  
+
+                            <h:outputText value="Tema" />  
+                            <p:inputText value="#{leccionBean.selectedLeccion.estado}"
+                                         onkeyup="this.value = this.value.toUpperCase();"/>  
+
+                            <h:outputText value="Leccion " />  
+                            <p:selectOneMenu id="console" value="#{leccionBean.selectedLeccion.detalleLeccion.iddetalleleccion}">
+                                <f:selectItem itemLabel="Central" itemValue="4" />
+                                <f:selectItem itemLabel="Local" itemValue="3" />
+                                <f:selectItem itemLabel="Parcial" itemValue="2" />
+                                <f:selectItem itemLabel="Basica" itemValue="1" />
+                            </p:selectOneMenu>  
+
+                            <f:facet name="footer">
+                                <p:separator/>
+                                <center>
+                                    <p:commandButton id="btnUpdateAceptar" update=":formDataTable, :msgs" title="Modificar" actionListener="#{leccionBean.btnUpdateNivel()}"
+                                                     oncomplete="dialogUsuarioUpdate.hide()" icon="icon-save" value="Modificar"/>
+                                    <p:commandButton id="btnUpdateCancelar" oncomplete="dialogUsuarioUpdate.hide()" 
+                                                     value="Cancelar" icon="icon-cancel" title="Cancelar"/>
+                                </center>
+                            </f:facet>
+                        </h:panelGrid>  
+                    </p:dialog>  
+                </h:form>
+                
+                <h:form id="formDelete">
+                    <p:confirmDialog id="confirmDialog" message="¿Esta seguro de eliminar #{leccionBean.selectedLeccion.descripcion}?"
+                                     header="Eliminar Leccion" severity="alert" widgetVar="dialogUsuarioDelete"> 
+                        
+                        <center>
+                            <h:inputHidden value="#{leccionBean.selectedLeccion.idleccion}"/>
+                            <p:commandButton id="confirm" value="Aceptar" update=":formDataTable, :msgs" oncomplete="dialogUsuarioDelete.hide()"
+                                             actionListener="#{leccionBean.btnDeleteLeccion()}" icon="icon-check"/>  
+                            <p:commandButton id="decline" value="Cancelar" onclick="dialogUsuarioDelete.hide();" type="button" icon="icon-cancel"/>  
+                        </center>
+                    </p:confirmDialog>
+                </h:form>
+
+
+
+            </ui:define>
+
+
+        </ui:composition>
+
+    </body>
+</html>

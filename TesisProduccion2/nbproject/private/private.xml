@@ -4,9 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Roy-Pc/Documents/GitHub/TesisProduccion/TesisProduccion2/web/inicio.xhtml</file>
-            <file>file:/C:/Users/Roy-Pc/Documents/GitHub/TesisProduccion/TesisProduccion2/web/curso.xhtml</file>
-            <file>file:/C:/Users/Roy-Pc/Documents/GitHub/TesisProduccion/TesisProduccion2/src/java/dao/UsuarioCursoDao.java</file>
-            <file>file:/C:/Users/Roy-Pc/Documents/GitHub/TesisProduccion/TesisProduccion2/src/java/dao/UsuariofacDaoImpl.java</file>
+            <file>file:/C:/Users/Roy-Pc/Documents/GitHub/TesisProduccion/TesisProduccion2/web/Template/plantilla.xhtml</file>
+            <file>file:/C:/Users/Roy-Pc/Documents/GitHub/TesisProduccion/TesisProduccion2/src/java/bean/UsuarioBean.java</file>
+            <file>file:/C:/Users/Roy-Pc/Documents/GitHub/TesisProduccion/TesisProduccion2/src/java/bean/NivelBean.java</file>
+            <file>file:/C:/Users/Roy-Pc/Documents/GitHub/TesisProduccion/TesisProduccion2/web/nivel.xhtml</file>
         </group>
     </open-files>
 </project-private>
